@@ -1,0 +1,8 @@
+.rightSider-main {
+	flex: 6;
+	width: 100%;
+	height: calc(100vh - 60px);
+	background: url("../../Assets/image.jpg");
+	background-position: center;
+	background-size: cover;
+}
