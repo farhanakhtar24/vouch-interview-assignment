@@ -1,24 +1,25 @@
 import React from "react";
 import classes from "./LeftSider.module.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, message, Space } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
+import axios from "axios";
 
 const LeftSider = () => {
 	const onFinish = async (values) => {
 		try {
-			const response = await fetch("https://reqres.in/api/login", {
-				method: "POST",
+			const response = await axios({
+				method: "post",
+				url: "https://reqres.in/api/login",
+				data: {
+					email: values.username,
+					password: values.password,
+				},
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({
-					email: values.username,
-					password: values.password,
-				}),
 			});
-			const responseData = await response.json();
-			console.log(responseData);
-			if (responseData.token) {
+
+			if (response.data) {
 				message.success("Login success");
 			}
 		} catch (err) {
